@@ -1,20 +1,23 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-// import 'package:amap_map_fluttify/amap_map_fluttify.dart';
-// import 'map/map.screen.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong/latlong.dart';
+import 'package:flutter_bmfbase/BaiduMap/bmfmap_base.dart';
+// import 'package:flutter_bmfmap/BaiduMap/map/bmf_map_view.dart';
+// import 'package:flutter_bmfmap/BaiduMap/models/bmf_map_options.dart';
+import 'package:flutter_bmfmap/BaiduMap/bmfmap_map.dart';
 
-void main() async {
-  // await AmapService.init(iosKey: '7a***********************f4', androidKey: '');
-
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // 百度地图sdk初始化鉴权
+  if (Platform.isIOS) {
+    BMFMapSDK.setApiKeyAndCoordType(
+        'nNwiLTEsaSOkieCNdOle8sAIj7gA2y1H', BMF_COORD_TYPE.BD09LL);
+  } else if (Platform.isAndroid) {
+    // Android 目前不支持接口设置Apikey,
+    // 请在主工程的Manifest文件里设置，详细配置方法请参考官网(https://lbsyun.baidu.com/)demo
+    BMFMapSDK.setCoordType(BMF_COORD_TYPE.BD09LL);
+  }
+  // SDKInitializer.initialize();
   runApp(MyApp());
-
-  // await enableFluttifyLog(true);
-  // await AmapService.init(
-  //   iosKey: '7a04506d15fdb7585707f7091d715ef4',
-  //   androidKey: '9cbe58696054e13af8b1af03b3b83116',
-  //   webApiKey: 'e69c6fddf6ccf8de917f5990deaa9aa2',
-  // );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: '高德地图测试'),
+      home: MyHomePage(title: '百度地图测试'),
     );
   }
 }
@@ -39,42 +42,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // AMapController _controller;
-  // AmapController _controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: new FlutterMap(
-          options: new MapOptions(
-            center: new LatLng(32.04, 118.78),
-            zoom: 13.0,
-          ),
-          layers: [
-            new TileLayerOptions(
-                urlTemplate:
-                    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                subdomains: ['a', 'b', 'c']),
-            new MarkerLayerOptions(
-              markers: [
-                new Marker(
-                  width: 80.0,
-                  height: 80.0,
-                  point: new LatLng(32.04, 118.78),
-                  builder: (ctx) => new Container(
-                    child: null,
-                  ),
-                ),
-              ],
-            ),
-          ],
+        body: BMFMapWidget(
+          onBMFMapCreated: (controller) {
+            // onBMFMapCreated(controller);
+            print('-----' + controller.getMapType().toString());
+          },
+          mapOptions: BMFMapOptions(
+              center: BMFCoordinate(32.0938, 118.4643),
+              zoomLevel: 14,
+              mapPadding:
+                  BMFEdgeInsets(left: 30, top: 30, right: 30, bottom: 30)),
         ));
-    // AmapView(
-    //   onMapCreated: (controller) async {
-    //     _controller = controller;
-    //   },
-    // ))
   }
 }

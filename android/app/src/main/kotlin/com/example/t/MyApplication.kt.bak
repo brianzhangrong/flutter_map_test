@@ -1,0 +1,9 @@
+package com.example.t
+import com.baidu.flutter_bmfbase.BmfMapApplication
+
+class MyApplication: BmfMapApplication() {
+
+    override fun onCreate(){
+        super.onCreate();
+    }
+}

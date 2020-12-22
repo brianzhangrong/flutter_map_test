@@ -2,7 +2,9 @@
     package="com.example.t">
    <application
         android:label="t"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:name="com.example.t.MyApplication">
+        <!-- android:name=".MainActivity" -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,9 +39,18 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <meta-data
+        <!-- <meta-data
           android:name="com.amap.api.v2.apikey"
-          android:value="9cbe58696054e13af8b1af03b3b83116" />
+          android:value="9cbe58696054e13af8b1af03b3b83116" /> -->
+
+      <service
+          android:name="com.baidu.location.f"
+          android:enabled="true"
+          android:process=":remote">
+      </service>
+      <meta-data  
+        android:name="com.baidu.lbsapi.API_KEY"  
+        android:value="nNwiLTEsaSOkieCNdOle8sAIj7gA2y1H" />  
         
     </application>
 </manifest>

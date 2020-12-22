@@ -23,7 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_bmfmap:  ^1.0.2
+  # flutter_bmflocation: ^1.0.2
+  flutter_bmfutils: ^1.0.2
+  # bdmap_location_flutter_plugin:
+  #   path: plugins/dbmap_location_flutter_plugin
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -34,21 +38,7 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  flutter_map: any
-  tuple: ^1.0.2
-  latlong: ^0.6.1
-  positioned_tap_detector: ^1.0.2
-  transparent_image: ^1.0.0
-  async: ^2.1.0
-  flutter_image: ^3.0.0
-  cached_network_image: ^2.0.0
-  path_provider: ^1.6.7
-  vector_math: ^2.0.0
-  proj4dart: ^1.0.4
-  meta: ^1.1.0
-  # amap_base: any
-  # amap_map_fluttify: any
-  # flutter_amap: any
+
   
   
   
