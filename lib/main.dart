@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
             print('-----' + controller.getMapType().toString());
           },
           mapOptions: BMFMapOptions(
-              center: BMFCoordinate(32.0938, 118.4643),
+              center: BMFCoordinate(32.04, 118.78),
               zoomLevel: 14,
               mapPadding:
                   BMFEdgeInsets(left: 30, top: 30, right: 30, bottom: 30)),
